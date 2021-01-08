@@ -77,7 +77,7 @@
         </li>
         <li>
           <span>推荐票</span>
-          <strong>{{ book.averageRating || "0" }}</strong>
+          <strong>{{ Math.floor(book.averageRating) || "0" }}</strong>
         </li>
       </ul>
       <!-- 810px -->
@@ -89,7 +89,9 @@
         <!--  简介内容-->
         <div class="introContent">
           {{ book.abstract || book.editorHighlight }}
-          <span v-if="!(book.abstract || book.editorHighlight)">暂无简介！</span>
+          <span v-if="!(book.abstract || book.editorHighlight)"
+            >暂无简介！</span
+          >
         </div>
         <!-- 目录 -->
         <div class="intro catalog">

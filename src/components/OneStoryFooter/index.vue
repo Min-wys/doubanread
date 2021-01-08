@@ -10,7 +10,7 @@
           <span @click="openIntro"><i class="iconfont icon-pingjia"></i>评论</span>
         </li>
         <li class="footerLeftItem">
-          <span><i class="iconfont icon-tuijian2"></i>推荐票</span>
+          <span @click="$store.commit('ADD_AVERAGERATING')"><i class="iconfont icon-tuijian2"></i>推荐票</span>
         </li>
         <li>
           <span

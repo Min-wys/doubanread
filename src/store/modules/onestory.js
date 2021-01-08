@@ -107,6 +107,14 @@ export default {
     },
   },
   mutations: {
+    // 修改推荐票的数
+    ADD_AVERAGERATING(state) {
+      if (!state.book.averageRating) {
+        Vue.set(state.book, "averageRating", "1");
+      } else {
+        state.book.averageRating++;
+      }
+    },
     // 保存单本书的数据
     REPLACE_BOOK(state, book) {
       state.book = book;
@@ -196,7 +204,7 @@ export default {
         isHidden: false,
         isDeleted: null,
         works: {
-          agent: { id: Date.now()+1 },
+          agent: { id: Date.now() + 1 },
           id: "168527638",
           title,
           cover:
