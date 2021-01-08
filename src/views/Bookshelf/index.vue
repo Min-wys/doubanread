@@ -56,13 +56,23 @@
             </label>
           </div>
           <div class="tool-rignt">
-            <a class="selector active" href="#">列表模式</a>
-            <a class="selector" href="#">封面模式</a>
+            <a :class="{ selector: true, active: coverShow }" href="#" @click="coverShow = true"
+              >列表模式</a
+            >
+            <a
+              :class="{ selector: true, active: !coverShow }"
+              href="#"
+              @click="coverShow = false"
+              >封面模式</a
+            >
           </div>
         </div>
       </div>
 
-      <ul v-if="booksList.length" class="worksList">
+      <ul
+        v-if="booksList.length"
+        :class="{ worksList: coverShow, coverMoudle: !coverShow }"
+      >
         <li class="worksItemContainer" v-for="item in booksList" :key="item.id">
           <label class="manage">
             <a href="#" class="worksItem" @click="toOneStory(item)">
@@ -72,7 +82,10 @@
                 :value="item.id"
                 v-model="checkList"
               />
-              <Grid :book="item" />
+              <Grid :book="item" v-if="coverShow" />
+              <div v-else class="coverBgc">
+                <GridCover :url="item.cover" class="gridCover" />
+              </div>
             </a>
           </label>
         </li>
@@ -85,6 +98,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import Grid from "../../components/Grid";
+import GridCover from "../../components/GridCover";
 export default {
   name: "Bookshelf",
   data() {
@@ -92,6 +106,7 @@ export default {
       booksList: [],
       isManage: false,
       checkList: [],
+      coverShow: true, // 模式
     };
   },
   computed: {
@@ -154,6 +169,7 @@ export default {
   },
   components: {
     Grid,
+    GridCover,
   },
 };
 </script>
@@ -190,7 +206,7 @@ export default {
 }
 .toolbar {
   height: 40px;
-  margin: 20px 0 5px 0;
+  margin: 20px 0 15px 0;
   background-color: #ebf0f2;
   display: flex;
   justify-content: space-between;
@@ -226,7 +242,6 @@ export default {
 .worksList {
   margin: 5px 10px;
   overflow: hidden;
-
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-gap: 0 20px;
@@ -236,6 +251,16 @@ export default {
   box-sizing: border-box;
   position: relative;
   border-bottom: 1px solid #ddd;
+}
+.coverMoudle {
+  display: flex;
+  // width: 100%;
+  height: 180px;
+  vertical-align: top;
+  .gridCover {
+    width: 100%;
+    height: 100%;
+  }
 }
 .worksItem {
   position: relative;
