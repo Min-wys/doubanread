@@ -1,0 +1,22 @@
+{
+  "data": {
+    "worksList": [
+      {
+        "id": "1",
+        "url": "https://img1.doubanio.com/view/ark_campaign_pic/web_large/public/10037.jpg"
+      },
+      {
+        "id": "2",
+        "url": "https://img1.doubanio.com/view/ark_campaign_pic/web_large/public/9880.jpg"
+      },
+      {
+        "id": "3",
+        "url": "https://img1.doubanio.com/view/ark_campaign_pic/web_large/public/9895.jpg"
+      }
+    ],
+    "titleList": [
+      { "id": "1", "title": "完本畅销" },
+      { "id": "2", "title": "新近完结" }
+    ]
+  }
+}
